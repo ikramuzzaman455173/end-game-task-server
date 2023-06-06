@@ -42,7 +42,52 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    const usersCollection = client.db('simpleDb').collection('users')
 
+    //post jwt
+    app.post('/jwt', (req, res) => {
+      const user = req.body
+      // console.log('user',user);
+      const token = jwt.sign(user, process.env.access_token_secreat_key, { expiresIn: '1h' })
+      res.send({ token })
+    })
+
+    // varifyAdminJwt
+    // const varifyAdminJwt = async (req, res, next) => {
+    //   const email = req.decoded.email
+    //   const query = { email: email }
+    //   const user = await usersCollection.findOne(query)
+    //   if (user?.role !== 'admin') {
+    //     return res.status(403).send({error:true,message:'forbidden message'})
+    //   }
+    //   next()
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+      // create payments intent
+      // app.post('/payment',varifyJwt,async (req,res) => {
+      //   const { price } = req.body
+      //   const amount = parseInt(price * 100)
+      //   console.log('price',price,'amount',amount);
+      //   const paymentIntent = await stripe.paymentIntents.create({
+      //     amount: amount,
+      //     currency: 'usd',
+      //     payment_method_types:['card']
+      //   })
+      //   res.send({
+      //     clientSecret:paymentIntent.client_secret
+      //   })
+      // })
 
 
 
