@@ -31,12 +31,6 @@ async function run() {
     const userCollection = client.db("Job_Task_College_Boking").collection("users")
     const reviewCollection = client.db("Job_Task_College_Boking").collection("reviews")
 
-
-    app.get("/colleges", async (req, res) => {
-        const result = await collegeCollection.find().toArray();
-        res.send(result)
-    })
-
     app.post("/users", async (req, res) => {
         const user = req.body;
         const query = { email: user.email }
@@ -47,6 +41,11 @@ async function run() {
         const result = await userCollection.insertOne(user)
         res.send(result)//i
     })
+
+    app.get("/colleges", async (req, res) => {
+      const result = await collegeCollection.find().toArray();
+      res.send(result)
+  })
 
     app.get('/college/:id', async (req, res) => {
         const collegeId = req.params.id;
