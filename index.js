@@ -1,9 +1,7 @@
 const express = require('express')
 const app = express()
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require("dotenv").config();
-// const stripe = require("stripe")(process.env.payment_secreat_key);
-// const jwt = require('jsonwebtoken');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.PORT || 4000
 const cors = require('cors');
 
@@ -12,7 +10,6 @@ app.use(express.json())
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_Key}@cluster0.wg8qvkk.mongodb.net/?retryWrites=true&w=majority`;
-
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
